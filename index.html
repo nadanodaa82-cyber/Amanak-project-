@@ -1,0 +1,71 @@
+index.html
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMANAK | منصة أمانك المتكاملة</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Poppins:wght@600;800&display=swap');
+        body { font-family: 'Cairo', sans-serif; background-color: #f8fafc; }
+        .en-logo { font-family: 'Poppins', sans-serif; letter-spacing: 2px; }
+        #login-screen { background: linear-gradient(135deg, #0891b2 0%, #164e63 100%); display: flex; }
+        .page { display: none; opacity: 0; transform: translateY(10px); transition: all 0.4s ease; }
+        .page.active { display: block; opacity: 1; transform: translateY(0); }
+        .nav-link.active { background-color: #0891b2; color: white; box-shadow: 0 4px 12px rgba(8, 145, 178, 0.3); }
+        .fade-in { animation: fadeIn 0.5s ease forwards; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body class="h-screen overflow-hidden">
+    <div id="login-screen" class="fixed inset-0 z-[100] flex items-center justify-center p-6">
+        <div class="bg-white w-full max-w-md rounded-[2.5rem] shadow-2xl overflow-hidden p-10 fade-in">
+            <div class="text-center mb-8">
+                <div class="bg-cyan-100 w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-shield-heart text-4xl text-cyan-600"></i>
+                </div>
+                <h2 class="en-logo text-3xl font-extrabold text-cyan-900 uppercase">AMANAK</h2>
+                <p class="text-slate-500 mt-2 font-bold">مرحباً بكِ في نظام أمانك</p>
+            </div>
+            <form onsubmit="handleLogin(event)" class="space-y-5">
+                <input type="text" placeholder="اسم المستخدم" class="w-full p-4 rounded-2xl bg-slate-50 border outline-none text-left" required>
+                <input type="password" placeholder="كلمة المرور" class="w-full p-4 rounded-2xl bg-slate-50 border outline-none text-left" required>
+                <button type="submit" class="w-full bg-cyan-600 hover:bg-cyan-700 text-white py-4 rounded-2xl font-bold text-lg shadow-lg">تسجيل الدخول</button>
+            </form>
+        </div>
+    </div>
+    <div id="main-app" class="hidden flex h-screen">
+        <aside class="w-80 bg-white border-l shadow-2xl flex flex-col p-8">
+            <div class="flex items-center gap-3 mb-10">
+                <div class="bg-cyan-600 p-2 rounded-xl text-white"><i class="fas fa-shield-heart text-xl"></i></div>
+                <span class="en-logo text-2xl font-black text-cyan-900 uppercase">AMANAK</span>
+            </div>
+            <nav class="space-y-2">
+                <button onclick="showSection('home')" class="nav-link active w-full flex items-center gap-4 p-4 rounded-2xl text-slate-500 font-bold">الرئيسية</button>
+                <button onclick="showSection('services')" class="nav-link w-full flex items-center gap-4 p-4 rounded-2xl text-slate-500 font-bold">أصناف الاستشارات</button>
+                <button onclick="showSection('philosophy')" class="nav-link w-full flex items-center gap-4 p-4 rounded-2xl font-bold mt-10 bg-cyan-50 text-cyan-700">فلسفة التصميم</button>
+            </nav>
+        </aside>
+        <main class="flex-1 overflow-y-auto p-12">
+            <section id="home" class="page active">
+                <h2 class="text-4xl font-extrabold text-slate-800">مرحباً بكِ في AMANAK</h2>
+                <p class="text-slate-500 mb-8">نظامك المتكامل للرعاية والاتزان النفسي.</p>
+            </section>
+            <section id="services" class="page">
+                <h2 class="text-3xl font-bold mb-8 text-slate-800">أصناف الخدمات</h2>
+                <p>قائمة الاستشارات والخدمات...</p>
+            </section>
+            <section id="philosophy" class="page">
+                <h2 class="text-3xl font-bold mb-8">فلسفة التصميم</h2>
+                <p class="text-xl">مرحلة التصميم تطلبت جهداً استثنائياً لتحويل المخططات لواقع ملموس...</p>
+            </section>
+        </main>
+    </div>
+    <script>
+        function handleLogin(e) { e.preventDefault(); document.getElementById('login-screen').style.display = 'none'; document.getElementById('main-app').classList.remove('hidden'); }
+        function showSection(id) { document.querySelectorAll('.page').forEach(p => p.classList.remove('active')); document.getElementById(id).classList.add('active'); }
+    </script>
+</body>
+</html>
