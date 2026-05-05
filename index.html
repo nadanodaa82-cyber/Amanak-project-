@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة أمانك | Amank</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+        body { background-color: #f8f5fb; color: #333; overflow-x: hidden; }
+        header { background: #fff; padding: 15px 5%; box-shadow: 0 2px 10px rgba(106, 27, 154, 0.1); position: sticky; top: 0; z-index: 100; }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin-right: 25px; cursor: pointer; font-weight: bold; }
+        .btn-login a { background: #6a1b9a; color: #fff !important; padding: 8px 20px; border-radius: 20px; text-decoration: none; }
+        .hero { padding: 100px 5%; text-align: center; background: linear-gradient(180deg, #fff 0%, #f3e5f5 100%); min-height: 80vh; }
+        .main-logo { width: 250px; margin-bottom: 20px; animation: zoomIn 1.2s ease; }
+        .btn-primary { background: #6a1b9a; color: #fff; border: none; padding: 12px 35px; border-radius: 30px; cursor: pointer; font-size: 16px; margin: 10px; }
+        .btn-secondary { border: 2px solid #6a1b9a; color: #6a1b9a; background: none; padding: 10px 30px; border-radius: 30px; cursor: pointer; }
+        .grid-layout, .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 40px; }
+        .card, .stat-card { background: #fff; padding: 30px; border-radius: 20px; border-bottom: 4px solid #6a1b9a; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .modal { display: none; position: fixed; z-index: 200; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); }
+        .modal-content { background: #fff; margin: 15% auto; padding: 30px; width: 90%; max-width: 400px; border-radius: 20px; text-align: center; position: relative; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 10px; }
+        footer { background: #4a148c; color: #fff; text-align: center; padding: 20px; margin-top: 50px; }
+        @keyframes zoomIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+    </style>
+</head>
+<body>
+    <header id="main-header" style="display:none;">
+        <nav><div class="logo" style="font-weight: bold; color: #6a1b9a; font-size: 24px;">AMANAK</div>
+            <ul><li><a onclick="showPage('home')">الرئيسية</a></li><li><a onclick="showPage('dashboard')">التحكم</a></li><li class="btn-login"><a onclick="openModal('loginModal')">دخول</a></li></ul>
+        </nav>
+    </header>
+    <main id="main-content"></main>
+    <template id="page-splash"><div style="height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: #fff;"><img src="https://files.catbox.moe/u8o0id.jpg" class="main-logo"></div></template>
+    <template id="page-home"><section class="hero"><img src="https://files.catbox.moe/u8o0id.jpg" class="main-logo"><h1>أهلاً بك في أمانك</h1><p>بيئة آمنة لطلاب جامعة طيبة</p><button class="btn-primary" onclick="showPage('dashboard')">ابدأ الآن</button></section></template>
+    <template id="page-dashboard"><section style="padding: 50px; text-align: center;"><h2>لوحة التحكم</h2><div class="dashboard-grid"><div class="stat-card" onclick="openModal('reportModal')"><h3>التقرير النفسي</h3><p>اضغط للعرض</p></div></div></section></template>
+    <div id="loginModal" class="modal"><div class="modal-content"><h2>دخول</h2><input type="email" placeholder="البريد"><input type="password" placeholder="كلمة المرور"><button class="btn-primary" onclick="closeModal('loginModal')">دخول</button></div></div>
+    <div id="reportModal" class="modal"><div class="modal-content"><h2>التقرير</h2><p>حالتك مستقرة وممتازة.</p><button class="btn-primary" onclick="window.print()">طباعة</button><button onclick="closeModal('reportModal')">إغلاق</button></div></div>
+    <footer id="main-footer" style="display:none;"><p>مشروع تخرج - أمانك &copy; 2026</p></footer>
+    <script>
+        function showPage(p) {
+            const m = document.getElementById('main-content'), t = document.getElementById('page-' + p), h = document.getElementById('main-header'), f = document.getElementById('main-footer');
+            h.style.display = (p === 'splash') ? 'none' : 'block';
+            f.style.display = (p === 'splash') ? 'none' : 'block';
+            m.innerHTML = ''; m.appendChild(t.content.cloneNode(true));
+        }
+        function openModal(id) { document.getElementById(id).style.display = "block"; }
+        function closeModal(id) { document.getElementById(id).style.display = "none"; }
+        window.onload = () => { showPage('splash'); setTimeout(() => { showPage('home'); }, 3000); };
+    </script>
+</body>
+</html>
