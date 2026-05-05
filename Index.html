@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة أمانك | AMANK</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+        body { background: #fdfbff; display: flex; justify-content: center; align-items: center; height: 100vh; color: #4a148c; text-align: center; }
+        
+        .container { animation: fadeIn 1.5s ease-in; }
+        
+        /* تصميم شعار عصري بدون صورة */
+        .logo-box {
+            width: 120px; height: 120px;
+            background: linear-gradient(135deg, #6a1b9a, #9c27b0);
+            color: white; border-radius: 30px;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 60px; font-weight: bold;
+            margin: 0 auto 20px;
+            box-shadow: 0 10px 20px rgba(106, 27, 154, 0.2);
+        }
+
+        h1 { font-size: 32px; margin-bottom: 10px; letter-spacing: 2px; }
+        p { color: #7b1fa2; font-size: 18px; opacity: 0.8; }
+        
+        .btn {
+            margin-top: 30px; padding: 12px 40px;
+            background: #6a1b9a; color: white;
+            border: none; border-radius: 25px;
+            font-size: 16px; cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+        .btn:hover { background: #4a148c; transform: scale(1.05); }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="logo-box">A</div>
+        <h1>AMANK | أمانك</h1>
+        <p>بيئة آمنة للاستشارات النفسية والتربوية</p>
+        <p style="font-size: 14px; margin-top: 5px;">جامعة طيبة - مشروع تخرج</p>
+        
+        <button class="btn" onclick="alert('جاري الدخول للمنصة...')">ابدأ الآن</button>
+    </div>
+
+</body>
+</html>
